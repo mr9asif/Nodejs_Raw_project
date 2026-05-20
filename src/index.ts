@@ -1,9 +1,11 @@
-import http from "http";
+import http from "node:http";
 
-const server = http.createServer((req, res)=>{
-    res.end("hello from server");
-})
+import { orderRoutes } from "./routes/order.routes.js";
 
-server.listen(3000, ()=>{
-    console.log("server running on 3000")
-})
+const server = http.createServer(async (req, res) => {
+  await orderRoutes(req, res);
+});
+
+server.listen(5000, () => {
+  console.log("Server running on port 5000");
+});
